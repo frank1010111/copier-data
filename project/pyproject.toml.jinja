@@ -1,0 +1,75 @@
+[project]
+name = "{{ project_name | slugify() }}"
+version = "0.1.0"
+description = "{{ project_description }}"
+authors = [{ name = "{{ author_fullname }}", email = "{{ author_email }}"}]
+dependencies = [
+  "matplotlib >= 3.5",
+  "numpy >=1.0",
+  "pandas >=2.0",
+  "scikit-learn >=1.3",
+  "seaborn >=0.11",
+]
+requires-python ">=3.9"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 99
+target-version = "py39"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",    # flake8
+    "B",
+    "B904", # flake8-bugbear
+    "I",    # isort
+    "N",    # pep-8 naming
+    "D",    # docstrings
+    "ARG",  # flake8-unused-arguments
+    "C4",   # flake8-comprehensions
+    "EM",   # flake8-errmsg
+    "ICN",  # flake8-import-conventions
+    "ISC",  # flake8-implicit-str-concat
+    "NPY",      # NumPy specific rules
+    "PD",   # pandas-vet
+    "PGH",  # pygrep-hooks
+    "PIE",  # flake8-pie
+    "PL",   # pylint
+    "PT",   # flake8-pytest-style
+    "PTH",  # flake8-use-pathlib
+    "RET",  # flake8-return
+    "RUF",  # Ruff-specific
+    "SIM",  # flake8-simplify
+    "T20",  # flake8-print
+    "UP",   # pyupgrade
+    "YTT",  # flake8-2020
+]
+extend-ignore = [
+    "D203",   # docstring blank line
+    "D213",   # multiline summary
+    "ISC001", # Conflicts with formatter
+    "PLR",    # Design related pylint codes
+    "PT004",  # Use underscore for non-returning fixture (use usefixture instead)
+    "RET504", # 'unnecessary' variable assignment before return statement
+    "N806","N802","N803"   # lowercase names
+]
+unfixable = [
+    "T20",  # Removes print statements
+    "F841", # Removes unused variables
+]
+exclude = []
+flake8-unused-arguments.ignore-variadic-names = true
+isort.required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"noxfile.py" = ["T", "T201"]
+
+[tool.ruff.format]
+docstring-code-format = true
+

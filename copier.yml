@@ -1,0 +1,37 @@
+# CONFIGURATION -------------------------
+_min_copier_version: "9"
+_envops:
+  autoescape: false
+  keep_trailing_newline: true
+_subdirectory: project
+_templates_suffix: .jinja
+_jinja_extensions:
+- copier_templates_extensions.TemplateExtensionLoader
+- extensions.py:CurrentYearExtension
+- extensions.py:GitExtension
+- extensions.py:SlugifyExtension
+
+# PROMPT --------------------------------
+project_name:
+  type: str
+  help: Your project name
+
+project_description:
+  type: str
+  help: Your project description
+
+author_fullname:
+  type: str
+  help: Your full name
+  default: "{{ 'Frank Male' | git_user_name }}"
+
+author_email:
+  type: str
+  help: Your email
+  default: "{{ 'frank.male@psu.edu' | git_user_email }}"
+
+package_import_name:
+  type: str
+  help: name to use for imports
+  default: "{{ project_name | slugify('_') }}"
+
