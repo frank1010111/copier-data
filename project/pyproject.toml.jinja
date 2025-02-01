@@ -18,7 +18,6 @@ build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 99
-target-version = "py39"
 
 [tool.ruff.lint]
 select = [
@@ -35,7 +34,7 @@ select = [
     "EM",   # flake8-errmsg
     "ICN",  # flake8-import-conventions
     "ISC",  # flake8-implicit-str-concat
-    "NPY",      # NumPy specific rules
+    "NPY",  # NumPy specific rules
     "PD",   # pandas-vet
     "PGH",  # pygrep-hooks
     "PIE",  # flake8-pie
@@ -64,7 +63,6 @@ unfixable = [
 ]
 exclude = []
 flake8-unused-arguments.ignore-variadic-names = true
-isort.required-imports = ["from __future__ import annotations"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
